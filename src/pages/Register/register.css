@@ -3,7 +3,12 @@
     flex-direction: column;
     align-items: center;
     padding: 5rem 4rem 0;
+    overflow: hidden;
+}
 
+button:disabled {
+    opacity: 80%;
+    color: grey
 }
 
 .auth p {
@@ -39,4 +44,46 @@
     font-size: .8rem;
     padding-top: 0;
     margin-top: 0;
+}
+
+.auth__avatars-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.auth__avatars-title {
+    margin: 0;
+    padding: 0;
+}
+
+.auth__avatars {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem
+}
+
+.auth__avatar {
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+    border-radius: 2rem;
+    outline: 3px solid white
+}
+
+.selected {
+    outline: 5px solid rgb(105, 246, 140)
+}
+
+.auth__avatar img {
+    height: 6rem;
+    transition: 0.5s ease-in-out;
+    border-radius: 2rem;
 }
