@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import "./register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import {description} from "../../utils/texts.js"
 type Account = {
   username: string;
   password: string;
@@ -15,8 +16,10 @@ function Register() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<Account>({mode: "onBlur"});
-  const onSubmit = handleSubmit((data) => {});
+  } = useForm<Account>({mode: "all"});
+  const onSubmit = handleSubmit((data) => {
+    console.log(data)
+  });
 
   const generateAvatars = () => {
     const promises: Promise<Response>[] = [];
@@ -29,41 +32,23 @@ function Register() {
     });
   };
 
-  console.log(errors);
-
   useEffect(() => {
     generateAvatars();
   }, []);
 
   return (
     <div className="auth">
-    <p>
-        Дневник поведенческой активации Здесь будет информация о том, для кого
-        этот сайт и как им пользоваться. Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Error reprehenderit, obcaecati, repellendus odio
-        consequatur consectetur quisquam, architecto doloribus expedita harum
-        voluptatibus reiciendis in est. Sint quod voluptatibus neque fuga alias.
-        Дневник поведенческой активации Здесь будет информация о том, для кого
-        этот сайт и как им пользоваться. Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Error reprehenderit, obcaecati, repellendus odio
-        consequatur consectetur quisquam, architecto doloribus expedita harum
-        voluptatibus reiciendis in est. Sint quod voluptatibus neque fuga alias.
-        Здесь будет информация о том, для кого этот сайт и как им пользоваться.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error
-        reprehenderit, obcaecati, repellendus odio consequatur consectetur
-        quisquam, architecto doloribus expedita harum voluptatibus reiciendis in
-        est. Sint quod voluptatibus neque fuga alias.
-      </p>
+    <p>{description}</p>
       <form className="auth__form" onSubmit={onSubmit} noValidate>
       <h4 className="auth__title">Регистрация</h4>
         <input
           {...register("username",
           {
             required: "Обязательное поле",
-            minLength: {value: 3, message: "Логин должен содержать не менее 3 символов"}, pattern: {value: /^[A-Za-zА-Яа-я0-9_]{7,29}$/, message: "Имя может содержать только буквы, цифры и нижнее подчеркивание"}
+            minLength: {value: 3, message: "Логин должен содержать не менее 3 символов"}, pattern: {value: /^[A-Za-zА-Яа-я0-9_]{3,20}$/, message: "Логин может содержать только буквы, цифры и нижнее подчеркивание"}
           })}
           type="text"
-          placeholder="Имя"
+          placeholder="Логин"
           name="username"
         />
         <p className="auth__error">{errors.username?.message}</p>
@@ -82,7 +67,7 @@ function Register() {
                     <img
                     key={index} className={`auth__avatar ${selectedAvatar === index ? "selected" : ""}`}
                       src={avatar}
-                      alt="avatar"
+                      alt="Вариант фото профиля"
                       onClick={() => setSelectedAvatar(index)}
                     />
                 );
@@ -93,7 +78,7 @@ function Register() {
                 Ещё
               </button>
         </div>
-        <button disabled={errors.username || errors.password ? true : false} type="submit">Готово!</button>
+        <button disabled={errors.username || errors.password || (selectedAvatar === undefined) ? true : false} type="submit">Готово!</button>
         <span>
           Уже есть аккаунт? <Link to="/">Войти</Link>
         </span>

@@ -6,19 +6,9 @@
     overflow: hidden;
 }
 
-button:disabled {
-    opacity: 80%;
-    color: grey
-}
-
-.auth p {
-    max-width: 900px;
-}
-
 .auth__form {
     width: 100%;
     max-width: 600px;
-    background-color: rgb(54, 54, 53);
     border-radius: 10px;
     margin: 1rem 0 0;
     padding: 2rem;
@@ -29,6 +19,8 @@ button:disabled {
     gap: .5rem
 }
 
+/*
+
 .auth__form input {
     margin: 0;
     padding: .6rem;
@@ -38,6 +30,7 @@ button:disabled {
     padding: 0 0 1rem;
     margin: 0;
 }
+*/
 
 .auth__error {
     color: rgb(249, 125, 125);
@@ -46,6 +39,7 @@ button:disabled {
     margin-top: 0;
 }
 
+/*
 .auth__avatars-wrapper {
     display: flex;
     flex-direction: column;
@@ -86,4 +80,4 @@ button:disabled {
     height: 6rem;
     transition: 0.5s ease-in-out;
     border-radius: 2rem;
-}
+}*/

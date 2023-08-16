@@ -1,9 +1,9 @@
-import React from "react";
 import "./Footer.css";
+import Box from '@mui/material/Box';
 
 function Footer() {
   let year = new Date().getFullYear();
-  return <div className="footer">Gusnalame © {year}</div>;
+  return <Box className="footer" sx={{ fontSize: 12 }}>Gusnalame © {year}</Box>;
 }
 
 export default Footer;

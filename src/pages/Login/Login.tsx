@@ -1,7 +1,11 @@
 import React from "react";
-import "./login.css";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { description } from "../../utils/texts.js";
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 type Account = {
   username: string;
   password: string;
@@ -12,54 +16,34 @@ function Login() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<Account>({mode: "onBlur"});
-  const onSubmit = handleSubmit((data) => {});
+  } = useForm<Account>({ mode: "all" });
+  const onSubmit = handleSubmit((data) => { });
   console.log(errors);
 
   return (
     <div className="auth">
-    <p>
-        Дневник поведенческой активации Здесь будет информация о том, для кого
-        этот сайт и как им пользоваться. Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Error reprehenderit, obcaecati, repellendus odio
-        consequatur consectetur quisquam, architecto doloribus expedita harum
-        voluptatibus reiciendis in est. Sint quod voluptatibus neque fuga alias.
-        Дневник поведенческой активации Здесь будет информация о том, для кого
-        этот сайт и как им пользоваться. Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Error reprehenderit, obcaecati, repellendus odio
-        consequatur consectetur quisquam, architecto doloribus expedita harum
-        voluptatibus reiciendis in est. Sint quod voluptatibus neque fuga alias.
-        Здесь будет информация о том, для кого этот сайт и как им пользоваться.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error
-        reprehenderit, obcaecati, repellendus odio consequatur consectetur
-        quisquam, architecto doloribus expedita harum voluptatibus reiciendis in
-        est. Sint quod voluptatibus neque fuga alias.
-      </p>
-      <form className="auth__form" onSubmit={onSubmit} noValidate>
-      <h4 className="auth__title">Вход</h4>
-        <input
+      <Typography>{description}</Typography>
+      <Box component="form" className="auth__form" onSubmit={onSubmit} noValidate>
+        <Typography className="auth__title">Вход</Typography>
+        <TextField label="Логин" id="outlined-error" required error={!!errors.username}
+          helperText={errors.username?.message}
           {...register("username",
-          {
-            required: "Обязательное поле",
-            minLength: {value: 3, message: "Логин должен содержать не менее 3 символов"}, pattern: {value: /^[A-Za-zА-Яа-я0-9_]{7,29}$/, message: "Имя может содержать только буквы, цифры и нижнее подчеркивание"}
-          })}
-          type="text"
-          placeholder="Имя"
+            {
+              required: "Обязательное поле",
+              minLength: { value: 3, message: "Логин должен содержать не менее 3 символов" }, pattern: { value: /^[A-Za-zА-Яа-я0-9_]{3,20}$/, message: "Логин может содержать только буквы, цифры и нижнее подчеркивание" }
+            })}
           name="username"
         />
-        <p className="auth__error">{errors.username?.message}</p>
-        <input
-          {...register("password", { required: "Обязательное поле", minLength: {value: 7, message: "Пароль должен содержать не менее 7 символов"}, pattern: {value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message: "Пароль должен содержать латинские буквы и минимум 1 цифру"} })}
-          type="password"
-          placeholder="Пароль"
+        <TextField label="Пароль" variant="outlined" required error={!!errors.password}
+          helperText={errors.password?.message}
+          {...register("password", { required: "Обязательное поле", minLength: { value: 7, message: "Пароль должен содержать не менее 7 символов" }, pattern: { value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message: "Пароль должен содержать латинские буквы и минимум 1 цифру" } })}
           name="password"
         />
-        <p className="auth__error">{errors.password?.message}</p>
-        <button type="submit">Войти</button>
-        <span>
+        <Button variant="contained" disabled={errors.username || errors.password ? true : false} type="submit">Войти!</Button>
+        <Typography>
           Ещё нет аккаунта? <Link to="/register">Регистрация</Link>
-        </span>
-      </form>
+        </Typography>
+      </Box>
     </div>
   );
 }
