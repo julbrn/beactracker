@@ -1,0 +1,9 @@
+.emoji {
+    width: 40px;
+    height: 40px
+}
+
+.align {
+    display: flex;
+    align-items: center;
+}
