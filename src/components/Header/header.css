@@ -23,10 +23,6 @@
     height: 2rem;
 }
 
-button {
-    cursor: pointer;
-    padding: .4rem .8rem;
-}
 
 .header__details {
     display: flex;
@@ -36,12 +32,8 @@ button {
     margin-left: auto;
 }
 
-.header__name {}
-
-.header__avatar {
-    width: 3rem;
-    height: 3rem;
-    border-radius: .3rem;
+@media screen and (max-width: 600px) {
+    .header__details {
+        margin: 1rem 0;
+    }
 }
-
-.header__logout {}

@@ -1,4 +1,3 @@
-import React from 'react';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
@@ -8,7 +7,7 @@ import Emoji2 from "../../assets/emoji2.svg";
 import Emoji3 from "../../assets/emoji3.svg";
 import Emoji4 from "../../assets/emoji4.svg";
 import Emoji5 from "../../assets/emoji5.svg";
-import "./profile.css"
+import "./profile.css";
 
 function Profile() {
   return (

@@ -1,8 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./register.css";
-import { Link, useNavigate } from "react-router-dom";
+import Box from '@mui/material/Box';
 import { useForm } from "react-hook-form";
-import {description} from "../../utils/texts.js"
+import { description, description2 } from "../../utils/texts.js";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+
 type Account = {
   username: string;
   password: string;
@@ -16,7 +23,7 @@ function Register() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<Account>({mode: "all"});
+  } = useForm<Account>({ mode: "all" });
   const onSubmit = handleSubmit((data) => {
     console.log(data)
   });
@@ -26,7 +33,7 @@ function Register() {
     for (let i = 0; i < 3; i++) {
       promises.push(fetch(`${api}?seed=${Math.round(Math.random() * 1000)}`));
     }
-    Promise.all(promises).then((responses: Response[])  => {
+    Promise.all(promises).then((responses: Response[]) => {
       const urls: string[] = responses.map((res) => res.url);
       setAvatars(urls);
     });
@@ -38,51 +45,59 @@ function Register() {
 
   return (
     <div className="auth">
-    <p>{description}</p>
-      <form className="auth__form" onSubmit={onSubmit} noValidate>
-      <h4 className="auth__title">Регистрация</h4>
-        <input
+      <div className="cards">
+
+        <Card variant="outlined" sx={{ maxWidth: 700 }}>
+          <CardMedia
+            component="img"
+            sx={{ paddingInline: 3, paddingTop: 3 }}
+            height="194"
+            image="https://images.unsplash.com/photo-1513128034602-7814ccaddd4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80"
+            alt="Paella dish"
+          />
+          <Typography sx={{ padding: 3 }} variant="body1">{description}</Typography></Card>
+
+      </div>
+      <Box component="form" className="auth__form" onSubmit={onSubmit} noValidate>
+        <Typography >Регистрация</Typography>
+        <TextField label="Логин" id="outlined-error" required error={!!errors.username}
+          helperText={errors.username?.message}
           {...register("username",
-          {
-            required: "Обязательное поле",
-            minLength: {value: 3, message: "Логин должен содержать не менее 3 символов"}, pattern: {value: /^[A-Za-zА-Яа-я0-9_]{3,20}$/, message: "Логин может содержать только буквы, цифры и нижнее подчеркивание"}
-          })}
-          type="text"
-          placeholder="Логин"
+            {
+              required: "Обязательное поле",
+              minLength: { value: 3, message: "Логин должен содержать не менее 3 символов" }, pattern: { value: /^[A-Za-zА-Яа-я0-9_]{3,20}$/, message: "Логин может содержать только буквы, цифры и нижнее подчеркивание" }
+            })}
           name="username"
         />
-        <p className="auth__error">{errors.username?.message}</p>
-        <input
-          {...register("password", { required: "Обязательное поле", minLength: {value: 7, message: "Пароль должен содержать не менее 7 символов"}, pattern: {value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message: "Пароль должен содержать латинские буквы и минимум 1 цифру"} })}
-          type="password"
-          placeholder="Пароль"
+        <TextField label="Пароль" variant="outlined" required error={!!errors.password}
+          helperText={errors.password?.message}
+          {...register("password", { required: "Обязательное поле", minLength: { value: 7, message: "Пароль должен содержать не менее 7 символов" }, pattern: { value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message: "Пароль должен содержать латинские буквы и минимум 1 цифру" } })}
           name="password"
         />
-        <p className="auth__error">{errors.password?.message}</p>
         <div className="auth__avatars-wrapper">
-        <h4 className="auth__avatars-title">Выберите аватар</h4>
-        <div className="auth__avatars">
-              {avatars.map((avatar, index) => {
-                return (
-                    <img
-                    key={index} className={`auth__avatar ${selectedAvatar === index ? "selected" : ""}`}
-                      src={avatar}
-                      alt="Вариант фото профиля"
-                      onClick={() => setSelectedAvatar(index)}
-                    />
-                );
-              })}
-   
-            </div>
-            <button className="generate-btn" onClick={generateAvatars} type="button">
-                Ещё
-              </button>
+          <Typography>Выберите аватар</Typography>
+          <div className="auth__avatars">
+            {avatars.map((avatar, index) => {
+              return (
+                <img
+                  key={index} className={`auth__avatar ${selectedAvatar === index ? "selected" : ""}`}
+                  src={avatar}
+                  alt="Вариант фото профиля"
+                  onClick={() => setSelectedAvatar(index)}
+                />
+              );
+            })}
+
+          </div>
+          <Button onClick={generateAvatars} variant="outlined">
+            Ещё
+          </Button>
         </div>
-        <button disabled={errors.username || errors.password || (selectedAvatar === undefined) ? true : false} type="submit">Готово!</button>
-        <span>
-          Уже есть аккаунт? <Link to="/">Войти</Link>
-        </span>
-      </form>
+        <Button variant="contained" disabled={errors.username || errors.password || (selectedAvatar === undefined) ? true : false} type="submit">Готово!</Button>
+        <Typography ><Box sx={{ textAlign: "center", marginTop: 2 }}>
+          Уже есть аккаунт? <Link href="/">Войти</Link></Box>
+        </Typography>
+      </Box>
     </div>
   );
 }

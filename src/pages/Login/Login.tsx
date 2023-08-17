@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { description } from "../../utils/texts.js";
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 type Account = {
   username: string;
   password: string;
@@ -40,11 +40,10 @@ function Login() {
           name="password"
         />
         <Button variant="contained" disabled={errors.username || errors.password ? true : false} type="submit">Войти!</Button>
-        <Typography>
-          Ещё нет аккаунта? <Link to="/register">Регистрация</Link>
+        <Typography><Box sx={{ textAlign: "center", marginTop: 2 }}>Ещё нет аккаунта? <Link href="/register">Регистрация</Link></Box>
         </Typography>
       </Box>
-    </div>
+    </div >
   );
 }
 

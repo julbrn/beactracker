@@ -19,6 +19,11 @@
     gap: .5rem
 }
 
+.cards {
+    display: flex;
+    gap: 2rem;
+}
+
 /*
 
 .auth__form input {
@@ -39,7 +44,7 @@
     margin-top: 0;
 }
 
-/*
+
 .auth__avatars-wrapper {
     display: flex;
     flex-direction: column;
@@ -80,4 +85,4 @@
     height: 6rem;
     transition: 0.5s ease-in-out;
     border-radius: 2rem;
-}*/
+}
