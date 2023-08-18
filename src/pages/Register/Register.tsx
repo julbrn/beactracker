@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./register.css";
 import Box from '@mui/material/Box';
 import { useForm } from "react-hook-form";
-import { description, description2 } from "../../utils/texts.js";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
 
 type Account = {
   username: string;
@@ -45,19 +42,6 @@ function Register() {
 
   return (
     <div className="auth">
-      <div className="cards">
-
-        <Card variant="outlined" sx={{ maxWidth: 700 }}>
-          <CardMedia
-            component="img"
-            sx={{ paddingInline: 3, paddingTop: 3 }}
-            height="194"
-            image="https://images.unsplash.com/photo-1513128034602-7814ccaddd4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80"
-            alt="Paella dish"
-          />
-          <Typography sx={{ padding: 3 }} variant="body1">{description}</Typography></Card>
-
-      </div>
       <Box component="form" className="auth__form" onSubmit={onSubmit} noValidate>
         <Typography >Регистрация</Typography>
         <TextField label="Логин" id="outlined-error" required error={!!errors.username}
@@ -95,7 +79,7 @@ function Register() {
         </div>
         <Button variant="contained" disabled={errors.username || errors.password || (selectedAvatar === undefined) ? true : false} type="submit">Готово!</Button>
         <Typography ><Box sx={{ textAlign: "center", marginTop: 2 }}>
-          Уже есть аккаунт? <Link href="/">Войти</Link></Box>
+          Уже есть аккаунт? <Link href="/login">Войти</Link></Box>
         </Typography>
       </Box>
     </div>

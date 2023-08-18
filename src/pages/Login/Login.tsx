@@ -1,6 +1,4 @@
-import React from "react";
 import { useForm } from "react-hook-form";
-import { description } from "../../utils/texts.js";
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -22,7 +20,6 @@ function Login() {
 
   return (
     <div className="auth">
-      <Typography>{description}</Typography>
       <Box component="form" className="auth__form" onSubmit={onSubmit} noValidate>
         <Typography className="auth__title">Вход</Typography>
         <TextField label="Логин" id="outlined-error" required error={!!errors.username}
