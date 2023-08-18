@@ -1,6 +1,6 @@
 import React from "react";
 import "./header.css";
-import Logo from "../../assets/logo2.png";
+import BeenhereIcon from '@mui/icons-material/Beenhere';
 import { useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -9,6 +9,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Switch from '@mui/material/Switch';
 import Dialog from '@mui/material/Dialog';
+import Link from '@mui/material/Link';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
@@ -48,8 +49,8 @@ export default function Header() {
         <AppBar position="fixed" sx={{ paddingTop: { xs: "1rem", sm: 0 } }}>
           <Toolbar sx={{ flexDirection: { xs: "column", sm: "row" } }}>
             <div className="header__logo-wrapper">
-              <img className="header__logo" src={Logo} alt="logo" />
-              <Typography variant="h6">BeAcTracker</Typography>
+              <Link href="/" sx={{ display: "flex", alignItems: "center", textDecoration: "none" }}><BeenhereIcon />
+                <Typography variant="h6">BeAcTracker</Typography></Link>
               <Switch></Switch>
             </div>
             {isProfile ? <div className="header__details" >

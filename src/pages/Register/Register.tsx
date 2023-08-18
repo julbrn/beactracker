@@ -20,7 +20,7 @@ function Register() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<Account>({ mode: "all" });
+  } = useForm<Account>({ mode: "onBlur" });
   const onSubmit = handleSubmit((data) => {
     console.log(data)
   });
@@ -44,7 +44,7 @@ function Register() {
     <div className="auth">
       <Box component="form" className="auth__form" onSubmit={onSubmit} noValidate>
         <Typography >Регистрация</Typography>
-        <TextField label="Логин" id="outlined-error" required error={!!errors.username}
+        <TextField label="Логин" style={{ width: 300 }} margin="normal" id="outlined-error" required error={!!errors.username}
           helperText={errors.username?.message}
           {...register("username",
             {
@@ -53,13 +53,13 @@ function Register() {
             })}
           name="username"
         />
-        <TextField label="Пароль" variant="outlined" required error={!!errors.password}
+        <TextField label="Пароль" style={{ width: 300 }} variant="outlined" margin="normal" type="password" required error={!!errors.password}
           helperText={errors.password?.message}
           {...register("password", { required: "Обязательное поле", minLength: { value: 7, message: "Пароль должен содержать не менее 7 символов" }, pattern: { value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message: "Пароль должен содержать латинские буквы и минимум 1 цифру" } })}
           name="password"
         />
         <div className="auth__avatars-wrapper">
-          <Typography>Выберите аватар</Typography>
+          <Typography>Выберите аватар*</Typography>
           <div className="auth__avatars">
             {avatars.map((avatar, index) => {
               return (
@@ -73,11 +73,11 @@ function Register() {
             })}
 
           </div>
-          <Button onClick={generateAvatars} variant="outlined">
+          <Button onClick={generateAvatars} size="small" variant="outlined">
             Ещё
           </Button>
         </div>
-        <Button variant="contained" disabled={errors.username || errors.password || (selectedAvatar === undefined) ? true : false} type="submit">Готово!</Button>
+        <Button variant="contained" sx={{ marginTop: 3 }} disabled={errors.username || errors.password || (selectedAvatar === undefined) ? true : false} type="submit">Готово!</Button>
         <Typography ><Box sx={{ textAlign: "center", marginTop: 2 }}>
           Уже есть аккаунт? <Link href="/login">Войти</Link></Box>
         </Typography>

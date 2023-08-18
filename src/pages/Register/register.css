@@ -50,7 +50,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
-    margin-bottom: 1rem;
+    margin: 2rem 0 1rem;
 }
 
 .auth__avatars-title {
@@ -78,7 +78,7 @@
 }
 
 .selected {
-    outline: 5px solid rgb(105, 246, 140)
+    outline: 5px solid #558b2f
 }
 
 .auth__avatar img {

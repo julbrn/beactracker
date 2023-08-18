@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { blueGrey } from '@mui/material/colors';
 import CssBaseline from '@mui/material/CssBaseline';
 
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
-    primary: blueGrey,
+    primary: {
+      main: "#558b2f"
+    },
     background: {
-      paper: "#302f37"
+      paper: "#161616"
     }
   },
 });
@@ -20,7 +21,9 @@ const darkTheme = createTheme({
 const lightTheme = createTheme({
   palette: {
     mode: "light",
-    primary: blueGrey,
+    primary: {
+      main: "#558b2f"
+    },
   },
 });
 
