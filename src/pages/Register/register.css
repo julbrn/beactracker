@@ -24,27 +24,6 @@
     gap: 2rem;
 }
 
-/*
-
-.auth__form input {
-    margin: 0;
-    padding: .6rem;
-}
-
-.auth__title {
-    padding: 0 0 1rem;
-    margin: 0;
-}
-*/
-
-.auth__error {
-    color: rgb(249, 125, 125);
-    font-size: .8rem;
-    padding-top: 0;
-    margin-top: 0;
-}
-
-
 .auth__avatars-wrapper {
     display: flex;
     flex-direction: column;
@@ -78,7 +57,7 @@
 }
 
 .selected {
-    outline: 5px solid #558b2f
+    outline: 5px solid #bef8a9
 }
 
 .auth__avatar img {

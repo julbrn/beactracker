@@ -14,10 +14,10 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#558b2f"
+      main: "#f8ffff"
     },
     background: {
-      paper: "#161616"
+      paper: "#393f4b"
     }
   },
 }, ruRU);
@@ -26,8 +26,11 @@ const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#558b2f"
+      main: "#393f4b"
     },
+    background: {
+      paper: "#f8ffff"
+    }
   },
 });
 

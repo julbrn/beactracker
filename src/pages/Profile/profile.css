@@ -9,7 +9,7 @@
 }
 
 .profile {
-    padding-top: 6rem;
+    width: 100%;
     display: flex;
-    gap: 10rem;
+    justify-content: space-between;
 }

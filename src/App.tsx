@@ -5,7 +5,7 @@ import Landing from "./pages/Landing/Landing";
 import Footer from "./components/Footer/Footer";
 import Profile from "./pages/Profile/Profile";
 import NotFound from "./pages/NotFound/NotFound";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 
@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 function App() {
   return (
     <BrowserRouter>
-      <Paper>
+      <Paper sx={{ borderRadius: 0 }}>
         <Box className="page">
           <Header />
           <Routes>

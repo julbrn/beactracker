@@ -13,7 +13,7 @@ function Landing() {
         navigate("/register")
     };
     return (
-        <Box sx={{ paddingTop: "6rem", display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
             <Typography variant="h4">Онлайн-дневник поведенческой активации</Typography>
             <Button variant="contained" onClick={handleRegister} sx={{ paddingInline: 3, paddingBlock: 1, fontSize: 16 }}>Начать вести дневник</Button>
             <Grid container spacing={4} sx={{ margin: "0 auto", maxWidth: 700 }}>
