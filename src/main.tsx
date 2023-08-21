@@ -4,6 +4,10 @@ import App from './App.tsx'
 import './index.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import "dayjs/locale/ru";
+import { ruRU } from '@mui/x-date-pickers/locales';
 
 
 const darkTheme = createTheme({
@@ -16,7 +20,7 @@ const darkTheme = createTheme({
       paper: "#161616"
     }
   },
-});
+}, ruRU);
 
 const lightTheme = createTheme({
   palette: {
@@ -31,8 +35,10 @@ const lightTheme = createTheme({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <CssBaseline />
-    <ThemeProvider theme={darkTheme}>
-      <App />
-    </ThemeProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ru">
+      <ThemeProvider theme={darkTheme}>
+        <App />
+      </ThemeProvider>
+    </LocalizationProvider>
   </React.StrictMode>
 );
