@@ -20,6 +20,17 @@ const darkTheme = createTheme({
       paper: "#393f4b"
     }
   },
+  components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          fontSize: ".8rem",
+          color: "#2b3039",
+          backgroundColor: "#f8ffff"
+        }
+      }
+    }
+  }
 }, ruRU);
 
 const lightTheme = createTheme({

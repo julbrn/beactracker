@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -14,14 +15,20 @@ import Calendar from '../../components/Calendar/Calendar';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import Tooltip from '@mui/material/Tooltip';
+import dayjs from "dayjs";
 
 function Profile() {
+  const [diaryDate, setDiaryDate] = useState<string>(dayjs(new Date()).format("D MMMM"));
+  const handleDiaryDateChange = (date: string) => {
+    setDiaryDate(date);
+  };
+
 
   return (
     <div className="profile">
       <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-        <Typography variant='h3'>Дневник за 21 августа</Typography>
-        <Tooltip title="Настроение за день">
+        <Typography variant='h3'>{diaryDate}</Typography>
+        <Tooltip title="Настроение за день" placement="right" sx={{ color: "#fff", backgroundColor: "#000" }}>
           <FormControl sx={{ width: 200 }}>
             <InputLabel shrink id="demo-simple-select-label">Настроение</InputLabel>
             <Select variant='outlined' label="Настроение&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" notched sx={{ fontSize: 12 }}
@@ -34,7 +41,7 @@ function Profile() {
             </Select>
           </FormControl>
         </Tooltip>
-        <Tooltip title="Добавить новую активность">
+        <Tooltip title="Добавить новую активность" placement="right">
           <Fab color="primary" aria-label="add" sx={{ height: "3rem", width: "3rem" }}>
             <AddIcon />
           </Fab>
@@ -51,7 +58,7 @@ function Profile() {
           </Select>
         </FormControl>
       </Box>
-      <Calendar />
+      <Calendar onDiaryDateChange={handleDiaryDateChange} />
 
     </div>
   )
