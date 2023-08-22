@@ -1,9 +1,5 @@
 import { useForm } from "react-hook-form";
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+import { TextField, Box, Button, Typography, Link } from '@mui/material';
 type Account = {
   username: string;
   password: string;

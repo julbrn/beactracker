@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import "./register.css";
-import Box from '@mui/material/Box';
+import { TextField, Box, Button, Typography, Link } from '@mui/material';
 import { useForm } from "react-hook-form";
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 
 type Account = {
   username: string;

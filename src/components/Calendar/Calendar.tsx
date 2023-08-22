@@ -45,7 +45,7 @@ function Calendar({ onDiaryDateChange }: CalendarProps) {
                     >
                         {children}
                     </PickersDay>
-                    <Box sx={{ position: "absolute", top: 0, right: 16, width: 8, height: 8, borderRadius: "50%", backgroundColor: `${moodColor === "red" ? "red" : moodColor === "orange" ? "orange" : moodColor === "yellow" ? "yellow" : moodColor === "salad" ? "#bcf657" : "#0ef748"}` }} />
+                    <Box sx={{ position: "absolute", top: 0, right: 16, width: 8, height: 8, borderRadius: "50%", backgroundColor: `${moodColor === "red" ? "#cf5353" : moodColor === "orange" ? "#ef9a61" : moodColor === "yellow" ? "#ecdd82" : moodColor === "salad" ? "#b7ed71" : "#5bbc62"}` }} />
                 </Box>
             );
         } else {
