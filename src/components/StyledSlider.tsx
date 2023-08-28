@@ -17,7 +17,7 @@ function ColouredSlider() {
             max={10}
             sx={{
                 '& .MuiSlider-thumb, & .MuiSlider-track': {
-                    backgroundColor: value < 4 ? '#cf5353' : value > 6 ? '#5bbc62' : '#ecdd82',
+                    backgroundColor: value < 3 ? '#cf5353' : value < 5 ? '#ef9a61' : value < 7 ? '#ecdd82' : value < 9 ? '#b7ed71' : '#5bbc62'
                 },
             }}
         />

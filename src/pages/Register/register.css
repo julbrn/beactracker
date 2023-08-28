@@ -57,7 +57,7 @@
 }
 
 .selected {
-    outline: 5px solid #bef8a9
+    outline: 5px solid #bef8a9;
 }
 
 .auth__avatar img {
