@@ -14,12 +14,24 @@ import ColouredSlider from "../../components/StyledSlider";
 import MoodRating from "../../components/MoodRating";
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useForm } from "react-hook-form";
+
+
+type Fields = {
+  friend: string;
+  activity: string;
+};
 
 function Profile() {
   const [diaryDate, setDiaryDate] = useState<string>(dayjs(new Date()).format("D MMMM"));
   const [formOpened, setFormOpened] = useState<boolean>(false);
   const [friendModalOpened, setFriendModalOpened] = useState<boolean>(false);
   const [friendList, setFriendList] = useState<string[]>([]);
+  const {
+    register,
+    formState: { errors },
+  } = useForm<Fields>({ mode: "onBlur" });
+
   const handleDiaryDateChange = (date: string) => {
     setDiaryDate(date);
   };
@@ -66,7 +78,14 @@ function Profile() {
         </Tooltip>
         {formOpened &&
           <FormControl component="fieldset" sx={{ width: 850, display: "flex", gap: 3, backgroundColor: "#393f4b", border: "1px solid rgba(255, 255, 255, .2)", padding: 3, borderRadius: "5px" }}>
-            <TextField label="Активность" type="text" style={{ width: 300, fontSize: 14 }} margin="normal" variant="outlined" required />
+            <TextField label="Активность" required type="text" style={{ width: 300, fontSize: 14 }} margin="normal" variant="outlined" error={!!errors.activity}
+              helperText={errors.activity?.message}
+              {...register("activity",
+                {
+                  required: "Обязательное поле",
+                  minLength: { value: 2, message: "Описание дела должно содержать не менее 2 символов" }, pattern: { value: /^[A-Za-zА-Яа-я0-9-_ ]{2,30}$/, message: "Недопустимый формат" }
+                })}
+              name="activity" />
             <FormControl sx={{ width: 200 }} required >
               <InputLabel shrink id="demo-simple-select-label">Сфера</InputLabel>
               <Select variant='outlined' label="Настроение&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" notched sx={{ fontSize: 14 }}
@@ -134,13 +153,20 @@ function Profile() {
                     Добавьте человека, который может Вам помочь выполнить это дело.
                   </DialogContentText>
                   <TextField
-                    autoFocus
                     margin="dense"
                     id="friendName"
                     label="Имя человека"
                     type="text"
                     fullWidth
                     variant="standard"
+                    error={!!errors.friend}
+                    helperText={errors.friend?.message}
+                    {...register("friend",
+                      {
+                        required: "Обязательное поле",
+                        minLength: { value: 2, message: "Имя должно содержать не менее 2 символов" }, pattern: { value: /^[A-Za-zА-Яа-я ]{2,20}$/, message: "Имя должно содержать только буквы" }
+                      })}
+                    name="friend"
                   />
                 </DialogContent>
                 <DialogActions>
