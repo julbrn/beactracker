@@ -9,25 +9,26 @@ type AddFriendProps = {
     setFriendList: React.Dispatch<React.SetStateAction<string[]>>;
     friendList: string[];
     friendModalOpened: boolean;
+    setFriend: React.Dispatch<React.SetStateAction<string>>;
 };
 
-function AddFriend({ setFriendModalOpened, setFriendList, friendList, friendModalOpened }: AddFriendProps) {
+function AddFriend({ setFriendModalOpened, setFriend, setFriendList, friendList, friendModalOpened }: AddFriendProps) {
     const {
-        register,
+        register, handleSubmit, reset,
         formState: { errors },
     } = useForm({ mode: "onChange" });
     const handleCloseFriendModal = () => {
         setFriendModalOpened(false)
     }
-    const handleAddFriend = (e) => {
-        e.preventDefault();
-        const friendName = (document.getElementById("friendName") as HTMLInputElement)?.value;
-        setFriendList([...friendList, friendName]);
+    const handleAddFriend = (data) => {
+        setFriend(data.friend);
+        setFriendList([...friendList, data.friend]);
         handleCloseFriendModal();
+        reset()
     }
     return (
         <Dialog open={friendModalOpened} onClose={handleCloseFriendModal}>
-            <form onSubmit={handleAddFriend}>
+            <form onSubmit={handleSubmit(handleAddFriend)}>
                 <DialogTitle>Добавьте человека</DialogTitle>
                 <DialogContent>
                     <DialogContentText>

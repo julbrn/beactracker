@@ -24,9 +24,9 @@ const darkTheme = createTheme({
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          fontSize: ".8rem",
           color: "#2b3039",
-          backgroundColor: "#f8ffff"
+          fontSize: 12,
+          backgroundColor: "#dcdcdc",
         }
       }
     }

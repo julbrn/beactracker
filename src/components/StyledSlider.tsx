@@ -1,16 +1,18 @@
 import React from 'react';
-import Slider from '@mui/material/Slider'
+import Slider from '@mui/material/Slider';
 
-function ColouredSlider() {
-    const [value, setValue] = React.useState(5);
+type ColouredSliderProps = {
+    name: string;
+    value: number;
+    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+function ColouredSlider({ name, value, handleChange }: ColouredSliderProps) {
     return (
         <Slider
-            value={value}
+            name={name}
             onChange={handleChange}
+            value={value}
             valueLabelDisplay="auto"
             defaultValue={5}
             min={1}
