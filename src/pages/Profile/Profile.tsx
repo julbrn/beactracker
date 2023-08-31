@@ -37,7 +37,7 @@ function Profile() {
       reality: number;
       mastery: number;
       difficulty: number;
-      friend?: string;
+      friendList?: string[];
       comment?: string;
     }[]
   >([]);
@@ -91,7 +91,7 @@ function Profile() {
       reality: reality ?? 5,
       mastery: mastery ?? 5,
       difficulty: difficulty ?? 5,
-      friend: friend ?? undefined,
+      friendList: friendList ?? undefined,
       comment: data.comment ?? undefined,
     };
 
@@ -110,7 +110,7 @@ function Profile() {
     }
   };
 
-  console.log(activities.length > 0)
+  console.log(activities)
 
   return (
     <div className="profile">
@@ -134,7 +134,8 @@ function Profile() {
                 </Box>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                   <Chip label={activity.sphere} sx={{ backgroundColor: "rgba(159, 101, 152, 0.6)" }}></Chip>
-                  {activity.friend ? <Chip label={activity.friend} sx={{ backgroundColor: "rgba(252, 174, 188, 0.6)" }}></Chip> : null}
+                  {activity.friendList ? (activity.friendList.map((friend) => (
+                    <Chip label={friend} sx={{ backgroundColor: "rgba(252, 174, 188, 0.6)" }}></Chip>))) : null}
                 </Box>
                 <Tooltip title="Сложность" placement="top">
                   <Box sx={{ borderRadius: "50%", padding: 2, height: 40, width: 40, display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "rgba(187, 187, 187, 0.6)" }}>{activity.difficulty}</Box>
