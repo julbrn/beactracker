@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { TextField, Checkbox, Stack, Chip, Button, IconButton, Tooltip, Fab, Select, Box, InputLabel, FormControl, MenuItem, Typography } from '@mui/material';
+import React, { useState, useCallback } from "react";
+import { TextField, LinearProgress, Checkbox, Stack, Chip, Button, IconButton, Tooltip, Fab, Select, Box, InputLabel, FormControl, MenuItem, Typography } from '@mui/material';
 import "./profile.css";
 import AddIcon from '@mui/icons-material/Add';
 import dayjs from "dayjs";
@@ -29,6 +29,8 @@ function Profile() {
   const [formOpened, setFormOpened] = useState<boolean>(false);
   const [friendModalOpened, setFriendModalOpened] = useState<boolean>(false);
   const [friendList, setFriendList] = useState<string[]>([]);
+  const [currentScore, setCurrentScore] = useState<number>(0);
+  const [maxScore, setMaxScore] = useState<number>(0);
   const [activities, setActivities] = useState<
     {
       activity: string;
@@ -93,8 +95,9 @@ function Profile() {
       difficulty: difficulty ?? 5,
       friendList: friendList ?? undefined,
       comment: data.comment ?? undefined,
+      done: false
     };
-
+    setMaxScore((activities.reduce((acc, curr) => acc + curr.difficulty, 0)) + difficulty);
     setActivities([...activities, newActivity]);
     handleCloseActivityForm();
     setSphere("");
@@ -110,17 +113,21 @@ function Profile() {
     }
   };
 
-  console.log(activities)
+  const handleDoneCheckbox = useCallback((index: number, checked: boolean) => {
+    setCurrentScore(prevState => prevState + (checked ? activities[index].difficulty : -activities[index].difficulty));
+  }, [activities]);
 
   return (
     <div className="profile">
       <Box sx={{ display: "flex", flexDirection: "column", gap: 3, marginBottom: 20 }}>
         <Typography variant='h3'>{diaryDate}</Typography>
         <MoodRating />
+        <LinearProgress variant="determinate" value={currentScore * 100 / maxScore} />
+        <Typography variant="h4">{currentScore}/{maxScore}</Typography>
         {
           activities.length > 0 &&
           <Stack direction="column" spacing={1}>
-            {activities.map((activity) => (
+            {activities.map((activity, index) => (
               <Box
                 key={activity}
                 label={activity}
@@ -128,7 +135,7 @@ function Profile() {
               >
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                   <Tooltip title="Уже выполнено?" placement="top">
-                    <Checkbox size="medium" />
+                    <Checkbox size="medium" onClick={() => handleDoneCheckbox(index, event.target.checked)} />
                   </Tooltip>
                   <Typography>{activity.activity}</Typography>
                 </Box>
